@@ -3,7 +3,7 @@
  * @Author       : frostime
  * @Date         : 2024-06-12 19:48:53
  * @FilePath     : /src/index.ts
- * @LastEditTime : 2024-06-12 20:39:58
+ * @LastEditTime : 2024-06-13 10:43:29
  * @Description  : 
  */
 import {
@@ -44,7 +44,8 @@ export default class PluginSample extends Plugin {
         let dialog = new Dialog({
             title: "SettingPannel",
             content: `<div id="SettingPanel" style="height: 100%;"></div>`,
-            width: "800px"
+            width: "800px",
+            height: "600px"
         });
         render(() => SettingExample({}), dialog.element.querySelector("#SettingPanel"))
     }

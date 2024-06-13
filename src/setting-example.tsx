@@ -3,10 +3,10 @@ import { showMessage } from "siyuan";
 import SettingPanel from "./libs/components/setting-panel";
 
 const App: Component = () => {
-    const [groups, _] = createSignal(["🌈 Default"]);
+    const [groups, _] = createSignal(["🌈 Group 1", "✨ Group 2"]);
     const [focusGroup, setFocusGroup] = createSignal(groups()[0]);
 
-    const SettingItems: ISettingItem[] = [
+    const group1Items: ISettingItem[] = [
         {
             type: 'checkbox',
             title: 'checkbox',
@@ -42,7 +42,10 @@ const App: Component = () => {
                 y: 'y',
                 z: 'z'
             }
-        },
+        }
+    ];
+
+    const group2Items: ISettingItem[] = [
         {
             type: 'slider',
             title: 'slider',
@@ -90,12 +93,16 @@ const App: Component = () => {
             <div class="config__tab-wrap">
                 <SettingPanel
                     group={groups()[0]}
-                    settingItems={SettingItems}
+                    settingItems={group1Items}
                     display={focusGroup() === groups()[0]}
                     onChanged={(kv) => console.debug("Changed:", kv)}
-                >
-                    <div class="fn__flex b3-label">💡 This is our default settings.</div>
-                </SettingPanel>
+                />
+                <SettingPanel
+                    group={groups()[1]}
+                    settingItems={group2Items}
+                    display={focusGroup() === groups()[1]}
+                    onChanged={(kv) => console.debug("Changed:", kv)}
+                />
             </div>
         </div>
     );

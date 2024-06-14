@@ -3,8 +3,8 @@
  * @Author       : frostime
  * @Date         : 2024-03-23 21:37:33
  * @FilePath     : /src/libs/dialog.ts
- * @LastEditTime : 2024-06-01 16:28:30
- * @Description  : Kits about dialogs
+ * @LastEditTime : 2024-06-14 22:06:06
+ * @Description  : 对话框相关工具
  */
 import { Dialog } from "siyuan";
 
@@ -55,6 +55,20 @@ export const inputDialogSync = async (args: {
         };
         inputDialog(newargs);
     });
+}
+
+export const simpleDialog = (args: {
+    title: string, ele: HTMLElement | DocumentFragment,
+    width?: string, height?: string
+}) => {
+    const dialog = new Dialog({
+        title: args.title,
+        content: `<div class="fn__flex fn__flex dialog-content"/>`,
+        width: args.width,
+        height: args.height
+    });
+    dialog.element.querySelector(".dialog-content").appendChild(args.ele);
+    return dialog;
 }
 
 

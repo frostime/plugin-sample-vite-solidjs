@@ -47,18 +47,6 @@ const App: Component = () => {
 
     const group2Items: ISettingItem[] = [
         {
-            type: 'slider',
-            title: 'slider',
-            description: 'slider',
-            key: 'd',
-            value: 50,
-            slider: {
-                min: 0,
-                max: 100,
-                step: 1
-            }
-        },
-        {
             type: 'button',
             title: 'button',
             description: 'This is a button',
@@ -69,6 +57,18 @@ const App: Component = () => {
                 callback: () => {
                     showMessage('Hello, world!');
                 }
+            }
+        },
+        {
+            type: 'slider',
+            title: 'slider',
+            description: 'slider',
+            key: 'd',
+            value: 50,
+            slider: {
+                min: 0,
+                max: 100,
+                step: 1
             }
         }
     ];

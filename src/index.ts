@@ -3,7 +3,7 @@
  * @Author       : frostime
  * @Date         : 2024-06-12 19:48:53
  * @FilePath     : /src/index.ts
- * @LastEditTime : 2024-06-13 10:43:29
+ * @LastEditTime : 2024-06-22 21:18:25
  * @Description  : 
  */
 import {
@@ -16,6 +16,8 @@ import "@/index.scss";
 import { render } from 'solid-js/web';
 import Hello from './hello';
 import SettingExample from "@/setting-example";
+
+import type {} from "solid-styled-jsx";
 
 
 export default class PluginSample extends Plugin {

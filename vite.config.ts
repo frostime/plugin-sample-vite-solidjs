@@ -25,7 +25,11 @@ export default defineConfig({
     },
 
     plugins: [
-        solidPlugin(),
+        solidPlugin({
+            babel: {
+                plugins: ['solid-styled-jsx/babel']
+            }
+        }),
 
         vitePluginYamlI18n({
             inDir: 'public/i18n',

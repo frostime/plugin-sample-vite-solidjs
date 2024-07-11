@@ -3,71 +3,43 @@
  * @Author       : frostime
  * @Date         : 2024-03-23 21:37:33
  * @FilePath     : /src/libs/dialog.ts
- * @LastEditTime : 2024-06-14 22:06:06
+ * @LastEditTime : 2024-07-11 22:57:25
  * @Description  : 对话框相关工具
  */
 import { Dialog } from "siyuan";
-
-export const inputDialog = (args: {
-    title: string, placeholder?: string, defaultText?: string,
-    confirm?: (text: string) => void, cancel?: () => void,
-    width?: string, height?: string
-}) => {
-    const dialog = new Dialog({
-        title: args.title,
-        content: `<div class="b3-dialog__content">
-    <div class="ft__breakword"><textarea class="b3-text-field fn__block" style="height: 100%;" placeholder=${args?.placeholder ?? ''}>${args?.defaultText ?? ''}</textarea></div>
-</div>
-<div class="b3-dialog__action">
-    <button class="b3-button b3-button--cancel">${window.siyuan.languages.cancel}</button><div class="fn__space"></div>
-    <button class="b3-button b3-button--text" id="confirmDialogConfirmBtn">${window.siyuan.languages.confirm}</button>
-</div>`,
-        width: args.width ?? "520px",
-        height: args.height
-    });
-    const target: HTMLTextAreaElement = dialog.element.querySelector(".b3-dialog__content>div.ft__breakword>textarea");
-    const btnsElement = dialog.element.querySelectorAll(".b3-button");
-    btnsElement[0].addEventListener("click", () => {
-        if (args?.cancel) {
-            args.cancel();
-        }
-        dialog.destroy();
-    });
-    btnsElement[1].addEventListener("click", () => {
-        if (args?.confirm) {
-            args.confirm(target.value);
-        }
-        dialog.destroy();
-    });
-};
-
-export const inputDialogSync = async (args: {
-    title: string, placeholder?: string, defaultText?: string,
-    width?: string, height?: string
-}) => {
-    return new Promise<string>((resolve) => {
-        let newargs = {
-            ...args, confirm: (text) => {
-                resolve(text);
-            }, cancel: () => {
-                resolve(null);
-            }
-        };
-        inputDialog(newargs);
-    });
-}
+import { JSXElement } from "solid-js";
+import { render } from "solid-js/web";
 
 export const simpleDialog = (args: {
     title: string, ele: HTMLElement | DocumentFragment,
-    width?: string, height?: string
+    width?: string, height?: string,
+    callback?: () => void;
 }) => {
     const dialog = new Dialog({
         title: args.title,
         content: `<div class="fn__flex fn__flex dialog-content"/>`,
         width: args.width,
-        height: args.height
+        height: args.height,
+        destroyCallback: args.callback
     });
     dialog.element.querySelector(".dialog-content").appendChild(args.ele);
+    return dialog;
+}
+
+export const solidDialog = (args: {
+    title: string, loader: () => JSXElement,
+    width?: string, height?: string,
+    callback?: () => void;
+}) => {
+    const dialog = new Dialog({
+        title: args.title,
+        content: `<div class="dialog-content" style="display: flex; height: 100%;"/>`,
+        width: args.width,
+        height: args.height,
+        destroyCallback: args.callback
+    });
+    let ele = dialog.element.querySelector(".dialog-content");
+    render(args.loader, ele);
     return dialog;
 }
 
@@ -118,6 +90,7 @@ export const confirmDialog = (args: IConfirmDialogArgs) => {
         }
         dialog.destroy();
     });
+    return dialog;
 };
 
 

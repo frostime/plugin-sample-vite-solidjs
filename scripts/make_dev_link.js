@@ -13,6 +13,7 @@ let targetDir = '';
 //********************************************************************************************
 
 const log = (info) => console.log(`\x1B[36m%s\x1B[0m`, info);
+const warn = (info) => console.log(`\x1B[33m%s\x1B[0m`, info);
 const error = (info) => console.log(`\x1B[31m%s\x1B[0m`, info);
 
 let POST_HEADER = {
@@ -92,27 +93,26 @@ async function chooseTarget(workspaces) {
 log('>>> Try to visit constant "targetDir" in make_dev_link.js...')
 
 if (targetDir === '') {
-    log('>>> Constant "targetDir" is empty, try to get SiYuan directory automatically....')
-    let res = await getSiYuanDir();
-    
-    if (res === null || res === undefined || res.length === 0) {
-        log('>>> Can not get SiYuan directory automatically, try to visit environment variable "SIYUAN_PLUGIN_DIR"....');
+    log('>>> Constant "targetDir" is empty....');
 
-        // console.log(process.env)
-        let env = process.env?.SIYUAN_PLUGIN_DIR;
-        if (env !== undefined && env !== null && env !== '') {
-            targetDir = env;
-            log(`\tGot target directory from environment variable "SIYUAN_PLUGIN_DIR": ${targetDir}`);
-        } else {
-            error('\tCan not get SiYuan directory from environment variable "SIYUAN_PLUGIN_DIR", failed!');
-            process.exit(1);
-        }
+    // console.log(process.env)
+    let env = process.env?.SIYUAN_PLUGIN_DIR;
+    if (env !== undefined && env !== null && env !== '') {
+        targetDir = env;
+        log(`>> Got target directory from environment variable "SIYUAN_PLUGIN_DIR": ${targetDir}`);
     } else {
-        targetDir = await chooseTarget(res);
+        warn('>>> Can not get SiYuan directory from environment variable "SIYUAN_PLUGIN_DIR".!');
+        log('>> Try to get SiYuan directory automatically!');
+
+        let res = await getSiYuanDir();
+        if (res === null || res === undefined || res.length === 0) {
+            warn('>>> Can not get SiYuan directory automatically, all tries failed');
+            process.exit(1);
+        } else {
+            targetDir = await chooseTarget(res);
+        }
+        log(`>>> Successfully got target directory: ${targetDir}`);
     }
-
-
-    log(`>>> Successfully got target directory: ${targetDir}`);
 }
 
 //Check

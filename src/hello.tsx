@@ -22,13 +22,14 @@ const Component = (props: {app: App}) => {
 
     let [color, setColor] = createSignal({r: 255, g: 255, b: 255});
 
-    // let timer = setInterval(() => {
-    //     setColor({
-    //         r: randInt(),
-    //         g: randInt(),
-    //         b: randInt(),
-    //     });
-    // }, 1000);
+    let timer = setInterval(() => {
+        setColor({
+            r: randInt(),
+            g: randInt(),
+            b: randInt(),
+        });
+        console.log('update color', color());
+    }, 1000);
 
     onMount(async () => {
         ver = await version();
@@ -41,8 +42,7 @@ const Component = (props: {app: App}) => {
 
     onCleanup(() => {
         showMessage("Hello panel closed", 1500);
-        // clearInterval(timer);
-        //BUG cleanup 实际上是不会运行的
+        clearInterval(timer);
         protyle.destroy();
     });
 

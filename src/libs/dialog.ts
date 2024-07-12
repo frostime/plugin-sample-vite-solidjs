@@ -3,7 +3,7 @@
  * @Author       : frostime
  * @Date         : 2024-03-23 21:37:33
  * @FilePath     : /src/libs/dialog.ts
- * @LastEditTime : 2024-07-12 18:39:56
+ * @LastEditTime : 2024-07-12 19:21:27
  * @Description  : 对话框相关工具
  */
 import { Dialog } from "siyuan";
@@ -33,10 +33,9 @@ export const solidDialog = (args: {
 }) => {
     let container = document.createElement('div')
     container.style.display = 'contents';
-    render(args.loader, container);
+    let disposer = render(args.loader, container);
     return simpleDialog({...args, ele: container, callback: () => {
-        container.parentElement?.removeChild(container);
-        container.innerHTML = '';
+        disposer();
         if (args.callback) args.callback();;
     }});
 }

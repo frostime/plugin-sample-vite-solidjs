@@ -36,11 +36,11 @@ const Component = (props: {app: App}) => {
             time = new Date(response.data).toString();
         });
         protyle = await initProtyle();
-        showMessage("Hello mount", 3000)
+        showMessage("Hello mount", 1500)
     });
 
     onCleanup(() => {
-        showMessage("Hello panel closed", 3000);
+        showMessage("Hello panel closed", 1500);
         protyle.destroy();
     });
 

@@ -3,7 +3,7 @@
  * @Author       : frostime
  * @Date         : 2024-03-23 21:37:33
  * @FilePath     : /src/libs/dialog.ts
- * @LastEditTime : 2024-07-12 18:23:01
+ * @LastEditTime : 2024-07-12 18:39:56
  * @Description  : 对话框相关工具
  */
 import { Dialog } from "siyuan";

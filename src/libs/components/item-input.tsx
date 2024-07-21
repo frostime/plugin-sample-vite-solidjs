@@ -1,4 +1,4 @@
-import { createMemo } from "solid-js";
+import { createMemo, For } from "solid-js";
 
 interface IProps extends ISettingItemCore {
     changed: (v?: any) => void;
@@ -102,14 +102,15 @@ export default function InputItem(props: IProps) {
                     classList={{ fn__size200: fn_size }}
                     {...attrStyle()}
                     id={props.key}
-                    value={props.value}
                     onChange={(e) => {
                         changed(e.currentTarget.value);
                     }}
                 >
-                    {Object.entries(props.options).map(([optionValue, text]) => (
-                        <option value={optionValue}>{text}</option>
-                    ))}
+                    <For each={Object.entries(props.options)}>
+                        {([optionValue, text]) => (
+                            <option value={optionValue} selected={props.value === optionValue}>{text}</option>
+                        )}
+                    </For>
                 </select>
             );
         } else if (props.type === "slider") {

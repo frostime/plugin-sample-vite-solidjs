@@ -7,31 +7,25 @@
 
 import { children, Component, JSX } from "solid-js";
 
-interface SettingItemWrapProps {
+import css from './form-wrap.module.css';
+
+interface FormWrap {
     title: string;
     description: string;
     direction?: 'row' | 'column';
     children?: JSX.Element;
 }
 
-const SettingItemWrap: Component<SettingItemWrapProps> = (props) => {
+const FormWrap: Component<FormWrap> = (props) => {
 
     const c = children(() => props.children);
 
     return (
         <>
             {props.direction === "row" ? (
-                <div class="item-wrap b3-label" style={{
-                    "box-shadow": "unset",
-                    "padding-bottom": "16px",
-                    "margin-bottom": "16px",
-                    "border-bottom": "1px solid var(--b3-border-color)"
-                }}>
+                <div class={`${css['item-wrap']} b3-label`}>
                     <div class="fn__block">
-                        <span class="title" style={{
-                            "font-weight": "bold",
-                            "color": "var(--b3-theme-primary)"
-                        }}>{props.title}</span>
+                        <span class={css.title}>{props.title}</span>
                         <div class="b3-label__text" innerHTML={props.description}></div>
                         <div class="fn__hr"></div>
                         <div style="display: flex; flex-direction: column; gap: 5px; position: relative;">
@@ -40,18 +34,9 @@ const SettingItemWrap: Component<SettingItemWrapProps> = (props) => {
                     </div>
                 </div>
             ) : (
-                <div class="item-wrap fn__flex b3-label config__item" style={{
-                    "box-shadow": "unset",
-                    "padding-bottom": "16px",
-                    "margin-bottom": "16px",
-                    "border-bottom": "1px solid var(--b3-border-color)",
-                    "position": "relative"
-                }}>
+                <div class={`${css['item-wrap']} fn__flex b3-label config__item`} style="position: relative;">
                     <div class="fn__flex-1">
-                        <span class="title" style={{
-                            "font-weight": "bold",
-                            "color": "var(--b3-theme-primary)"
-                        }}>{props.title}</span>
+                        <span class={css.title}>{props.title}</span>
                         <div class="b3-label__text" innerHTML={props.description}></div>
                     </div>
                     <span class="fn__space" />
@@ -62,4 +47,4 @@ const SettingItemWrap: Component<SettingItemWrapProps> = (props) => {
     );
 };
 
-export default SettingItemWrap;
+export default FormWrap;

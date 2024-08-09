@@ -5,7 +5,7 @@ interface IProps extends ISettingItemCore {
     style?: { [key: string]: string | number };
 }
 
-export default function InputItem(props: IProps) {
+export default function FormInput(props: IProps) {
 
     const fn_size = true;
 

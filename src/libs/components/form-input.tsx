@@ -1,7 +1,7 @@
 import { createMemo, For } from "solid-js";
 
 interface IProps extends ISettingItemCore {
-    changed: (v?: any) => void;
+    changed?: (v?: any) => void;
     style?: { [key: string]: string | number };
 }
 
@@ -92,7 +92,7 @@ export default function FormInput(props: IProps) {
                     {...attrStyle()}
                     onClick={click}
                 >
-                    {props.button.label}
+                    {props.button?.label ?? props.value}
                 </button>
             );
         } else if (props.type === "select") {

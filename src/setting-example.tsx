@@ -2,6 +2,8 @@ import { Component, createEffect, createSignal, For } from "solid-js";
 import { showMessage } from "siyuan";
 import SettingPanel from "./libs/components/setting-panel";
 import { Dynamic } from "solid-js/web";
+import FormWrap from "./libs/components/form-wrap";
+import FormInput from "./libs/components/form-input";
 
 const App: Component = () => {
     const [groups, _] = createSignal(["🌈 Group 1", "✨ Group 2"]);
@@ -95,7 +97,23 @@ const App: Component = () => {
             group={groups()[1]}
             settingItems={group2Items}
             onChanged={(kv) => console.debug("Changed:", kv)}
-        />
+        >
+            <FormWrap
+                title="Form with action"
+                description="This is a row direction form; with a actoin element at right"
+                direction="row"
+                action={
+                    <FormInput
+                        type="button"
+                        key="a"
+                        value={"Action Buttom"}
+                        style={{ width: "120px" }}
+                    />
+                }
+            >
+                Hello world;
+            </FormWrap>
+        </SettingPanel>
     );
 
     const showGroups = [Group1, Group2];
@@ -118,7 +136,7 @@ const App: Component = () => {
                 </For>
             </ul>
             <div class="config__tab-wrap">
-                <Dynamic component={showGroups[focusGroup()]}/>
+                <Dynamic component={showGroups[focusGroup()]} />
             </div>
         </div>
     );

@@ -6,8 +6,7 @@
 // Description  :
 
 import { Component, For, JSXElement, children } from "solid-js";
-import FormWrap from "./form-wrap";
-import FormInput from "./form-input";
+import Form from "./Form";
 
 interface SettingPanelProps {
     group: string;
@@ -25,12 +24,12 @@ const SettingPanel: Component<SettingPanelProps> = (props) => {
         <div class={`config__tab-container`} data-name={props.group}>
             <For each={props.settingItems}>
                 {(item) => (
-                    <FormWrap
+                    <Form.Wrap
                         title={item.title}
                         description={item.description}
                         direction={item?.direction}
                     >
-                        <FormInput
+                        <Form.Input
                             type={item.type}
                             key={item.key}
                             value={item.value}
@@ -40,7 +39,7 @@ const SettingPanel: Component<SettingPanelProps> = (props) => {
                             button={item?.button}
                             changed={(v) => props.onChanged({ group: props.group, key: item.key, value: v })}
                         />
-                    </FormWrap>
+                    </Form.Wrap>
                 )}
             </For>
             {useChildren()}

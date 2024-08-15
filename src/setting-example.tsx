@@ -2,8 +2,8 @@ import { Component, createEffect, createSignal, For } from "solid-js";
 import { showMessage } from "siyuan";
 import SettingPanel from "./libs/components/setting-panel";
 import { Dynamic } from "solid-js/web";
-import FormWrap from "./libs/components/form-wrap";
-import FormInput from "./libs/components/form-input";
+import FormWrap from "./libs/components/Form/form-wrap";
+import FormInput from "./libs/components/Form/form-input";
 
 const App: Component = () => {
     const [groups, _] = createSignal(["🌈 Group 1", "✨ Group 2"]);

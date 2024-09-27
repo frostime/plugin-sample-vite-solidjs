@@ -1,6 +1,6 @@
 {
   "name": "plugin-sample-vite-solidjs",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "type": "module",
   "description": "This is a sample plugin based on vite and solidjs for Siyuan (https://b3log.org/siyuan)",
   "repository": "",
@@ -8,9 +8,9 @@
   "author": "frostime",
   "license": "GPL-3.0-only",
   "scripts": {
-    "make-link": "node --no-warnings ./scripts/make_dev_link.js",
-    "make-link-win": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/elevate.ps1 -scriptPath ./scripts/make_dev_link.js",
-    "update-version": "node --no-warnings ./scripts/update_version.js",
+    "make-link": "npx make-link",
+    "make-link-win": "npx make-lin-win",
+    "update-version": "npx update-version",
     "dev": "vite build --watch",
     "build": "vite build",
     "make-install": "vite build && node --no-warnings ./scripts/make_install.js"
@@ -23,7 +23,8 @@
     "minimist": "^1.2.8",
     "rollup-plugin-livereload": "^2.0.5",
     "sass": "^1.72.0",
-    "siyuan": "0.9.9",
+    "siyuan": "1.0.3",
+    "siyuan-plugin-cli": "^2.3.1",
     "solid-js": "^1.8.17",
     "solid-styled-jsx": "^0.27.1",
     "ts-node": "^10.9.2",

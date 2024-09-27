@@ -2,7 +2,7 @@
   "name": "plugin-sample-vite-solidjs",
   "author": "frostime",
   "url": "https://github.com/frostime/plugin-sample-vite-solidjs",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "minAppVersion": "3.0.12",
   "backends": [
     "all"
@@ -28,6 +28,9 @@
     ]
   },
   "keywords": [
-    "plugin", "sample", "插件样例", "solidjs"
+    "plugin",
+    "sample",
+    "插件样例",
+    "solidjs"
   ]
 }

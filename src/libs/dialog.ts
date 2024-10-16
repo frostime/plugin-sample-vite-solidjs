@@ -23,7 +23,10 @@ export const simpleDialog = (args: {
         destroyCallback: args.callback
     });
     dialog.element.querySelector(".dialog-content").appendChild(args.ele);
-    return dialog;
+    return {
+        dialog,
+        close: dialog.destroy.bind(dialog)
+    };
 }
 
 export const solidDialog = (args: {
